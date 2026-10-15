@@ -99,10 +99,10 @@ function Modal({ children, onClose }: { children: ReactNode; onClose: () => void
   )
 }
 
-// Multiplicación de las tablas 6–9: fácil para papá, difícil de adivinar para Matt.
+// Tabla del 5 al azar: 5 × n o n × 5 (n de 2 a 10).
 const newQuestion = () => {
-  const r = () => 6 + Math.floor(Math.random() * 4)
-  return [r(), r()] as const
+  const n = 2 + Math.floor(Math.random() * 9)
+  return (Math.random() < 0.5 ? [5, n] : [n, 5]) as readonly [number, number]
 }
 
 /** "Solo papá": hay que resolver una multiplicación para abrir la configuración. */
