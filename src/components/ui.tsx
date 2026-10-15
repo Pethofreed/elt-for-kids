@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import { canSpeak, speak } from '../lib/speech'
 
 export function BackButton({ to, label = 'Volver' }: { to: string; label?: string }) {
@@ -50,6 +50,21 @@ export function ProgressBar({ value, max, className = 'bg-emerald-400' }: { valu
   return (
     <div className="h-4 w-full overflow-hidden rounded-full bg-white/70 ring-1 ring-black/5">
       <div className={`h-full rounded-full transition-all duration-500 ${className}`} style={{ width: `${(value / Math.max(1, max)) * 100}%` }} />
+    </div>
+  )
+}
+
+export function Modal({ children, onClose }: { children: ReactNode; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4" onClick={onClose}>
+      <div className="card max-h-[90vh] w-full max-w-sm animate-pop overflow-y-auto p-5" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal>
+        {children}
+      </div>
     </div>
   )
 }

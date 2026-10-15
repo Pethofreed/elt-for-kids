@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { barColor, GOAL_OPTIONS, isFull, POINTS_PER_CORRECT, resetBar, setGoal, useRewards } from '../lib/rewards'
 import { celebrate, sfx } from '../lib/sounds'
+import { QuickPicker } from './QuickPlay'
+import { Modal } from './ui'
 
 /** Barra de recompensa fija arriba en todas las pantallas. */
 export default function RewardBar() {
   const r = useRewards()
   const [config, setConfig] = useState(false)
   const [gate, setGate] = useState(false)
+  const [picker, setPicker] = useState(false)
   const [won, setWon] = useState(false)
   const [bump, setBump] = useState(false)
   const prev = useRef(r.points)
@@ -36,11 +39,21 @@ export default function RewardBar() {
     <>
       <div className="sticky top-0 z-30 border-b border-black/5 bg-[#fef6e4]/90 backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-2">
-          <span className={`text-3xl transition ${bump ? 'scale-125' : ''} ${full ? 'animate-float' : ''}`} aria-hidden>
-            🎮
-          </span>
           <button
-            onClick={() => (full ? setWon(true) : setGate(true))}
+            onClick={() => setPicker(true)}
+            className={`flex shrink-0 items-center gap-1 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 py-1.5 pl-2 pr-3 font-display text-sm font-extrabold leading-tight text-white shadow-[0_3px_0_rgba(0,0,0,0.18)] transition hover:brightness-110 active:translate-y-[2px] active:shadow-none ${bump ? 'scale-110' : ''}`}
+          >
+            <span className={`text-2xl ${full ? 'animate-float' : ''}`} aria-hidden>
+              🎮
+            </span>
+            <span className="text-left">
+              Gana
+              <br />
+              puntos
+            </span>
+          </button>
+          <button
+            onClick={() => (full ? setWon(true) : setPicker(true))}
             className="min-w-0 flex-1 text-left"
             aria-label={`Barra de premio: ${r.points} de ${r.goal} puntos`}
           >
@@ -78,24 +91,10 @@ export default function RewardBar() {
           }}
         />
       )}
+      {picker && <QuickPicker onClose={() => setPicker(false)} />}
       {config && <ConfigModal onClose={() => setConfig(false)} />}
       {won && <WonModal onClose={() => setWon(false)} />}
     </>
-  )
-}
-
-function Modal({ children, onClose }: { children: ReactNode; onClose: () => void }) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [onClose])
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4" onClick={onClose}>
-      <div className="card w-full max-w-sm animate-pop p-5" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal>
-        {children}
-      </div>
-    </div>
   )
 }
 

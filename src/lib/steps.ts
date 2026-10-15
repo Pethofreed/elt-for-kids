@@ -259,3 +259,25 @@ export function examSteps(topics: Topic[]): Step[] {
   }
   return shuffle(steps)
 }
+
+// ───────────── Gana puntos: mezcla rápida de todos los temas ─────────────
+
+export type QuickKind = 'mix' | 'quiz' | 'listen' | 'write' | 'build'
+
+const QUICK_GENS: Record<Exclude<QuickKind, 'mix'>, (t: Topic) => Step[]> = {
+  quiz: (t) => quizSteps(t, 1),
+  listen: (t) => listenSteps(t, 1),
+  write: (t) => writeSteps(t, 1),
+  build: (t) => buildSteps(t, 1),
+}
+
+export function quickSteps(topics: Topic[], kind: QuickKind, n = 10): Step[] {
+  const kinds = Object.keys(QUICK_GENS) as (keyof typeof QUICK_GENS)[]
+  const steps: Step[] = []
+  for (let guard = 0; steps.length < n && guard < 100; guard++) {
+    const t = pick(topics, 1)[0]
+    const g = QUICK_GENS[kind === 'mix' ? pick(kinds, 1)[0] : kind]
+    steps.push(...g(t))
+  }
+  return steps.slice(0, n)
+}

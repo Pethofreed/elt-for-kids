@@ -4,6 +4,7 @@ import TopicPage from './components/TopicPage'
 import ActivityPage from './components/ActivityPage'
 import ExamPage from './components/ExamPage'
 import RewardBar from './components/RewardBar'
+import { QuickPage } from './components/QuickPlay'
 import { getTopic, topics } from './content'
 import type { ActivityId } from './lib/activities'
 
@@ -29,6 +30,9 @@ function Screen() {
   const [section, id, act] = parts
 
   if (section === 'exam') return <ExamPage topics={topics} />
+
+  // #/quick/<tipo>/<nonce>: el nonce reinicia el juego si se elige el mismo otra vez
+  if (section === 'quick' && id) return <QuickPage kind={id} key={act ?? id} />
 
   if (section === 'topic' && id) {
     const topic = getTopic(id)
