@@ -3,6 +3,7 @@ import type { Topic, Word } from '../content/types'
 import { saveStars, starsFromScore } from '../lib/progress'
 import { celebrate, sfx } from '../lib/sounds'
 import { speak } from '../lib/speech'
+import { addCorrect } from '../lib/rewards'
 import { shuffle } from '../lib/util'
 import Results from './Results'
 import { BackButton, Page } from './ui'
@@ -35,6 +36,7 @@ export default function MatchGame({ topic }: { topic: Topic }) {
     if (!l || !r) return
     if (l === r) {
       sfx.correct()
+      addCorrect()
       const m = [...matched, l]
       setMatched(m)
       setLeft(null)

@@ -3,6 +3,7 @@ import Home from './components/Home'
 import TopicPage from './components/TopicPage'
 import ActivityPage from './components/ActivityPage'
 import ExamPage from './components/ExamPage'
+import RewardBar from './components/RewardBar'
 import { getTopic, topics } from './content'
 import type { ActivityId } from './lib/activities'
 
@@ -13,7 +14,7 @@ export const go = (path: string) => {
   window.location.hash = '/' + path
 }
 
-export default function App() {
+function Screen() {
   const [parts, setParts] = useState(parse)
 
   useEffect(() => {
@@ -36,4 +37,13 @@ export default function App() {
   }
 
   return <Home />
+}
+
+export default function App() {
+  return (
+    <>
+      <RewardBar />
+      <Screen />
+    </>
+  )
 }

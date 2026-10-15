@@ -3,13 +3,14 @@ import type { Step } from '../lib/steps'
 import { saveStars, starsFromScore } from '../lib/progress'
 import { sfx } from '../lib/sounds'
 import { speak } from '../lib/speech'
+import { addCorrect, getRewards, isFull, POINTS_PER_CORRECT } from '../lib/rewards'
 import ChoiceView from './steps/ChoiceView'
 import WriteView from './steps/WriteView'
 import BuildView from './steps/BuildView'
 import Results from './Results'
 import { BackButton, Page, ProgressBar } from './ui'
 
-export type Answer = { correct: boolean; answer: string; tip?: string; note?: string }
+export type Answer = { correct: boolean; answer: string; tip?: string; note?: string; points?: boolean }
 
 type Props = {
   title: string
@@ -34,9 +35,11 @@ export default function StepRunner({ title, emoji, makeSteps, saveKey, backTo }:
 
   const onAnswer = (a: Answer) => {
     if (result) return
-    setResult(a)
+    const points = a.correct && !isFull(getRewards())
+    setResult({ ...a, points })
     if (a.correct) {
       setScore((s) => s + 1)
+      addCorrect()
       sfx.correct()
       setPraise(PRAISE[Math.floor(Math.random() * PRAISE.length)])
     } else {
@@ -97,6 +100,7 @@ export default function StepRunner({ title, emoji, makeSteps, saveKey, backTo }:
             <div className="flex flex-wrap items-center gap-3">
               <div className="min-w-0 flex-1">
                 <p className={`font-display text-2xl font-extrabold ${result.correct ? 'text-emerald-700' : 'text-rose-600'}`}>{praise}</p>
+                {result.points && <p className="font-display text-lg font-extrabold text-violet-600">+{POINTS_PER_CORRECT} puntos 🎮</p>}
                 {result.note && <p className="font-bold text-emerald-800">{result.note}</p>}
                 {!result.correct && (
                   <p className="font-bold text-slate-700">
