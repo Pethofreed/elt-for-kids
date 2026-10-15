@@ -1,0 +1,65 @@
+import type { Topic } from './types'
+
+const friends: Topic = {
+  id: 'friends',
+  title: 'My Friends',
+  subtitle: 'She is / He is / They are',
+  emoji: '👫',
+  color: 'violet',
+  grammar: [
+    {
+      title: 'Remember!',
+      lines: ['She + is', 'He + is', 'They + are'],
+      good: 'She is happy.',
+      bad: 'She are happy.',
+    },
+    {
+      title: 'Ask your friend → Answer',
+      lines: ['Is she happy? → Yes, she is. / No, she isn’t.', 'Is he strong? → Yes, he is. / No, he isn’t.', 'Are they funny? → Yes, they are. / No, they aren’t.'],
+    },
+  ],
+  words: [
+    { en: 'big', es: 'grande', emoji: '🐘' },
+    { en: 'small', es: 'pequeño', emoji: '🐭' },
+    { en: 'young', es: 'joven', emoji: '👦' },
+    { en: 'old', es: 'viejo', emoji: '👴' },
+    { en: 'cute', es: 'tierno', emoji: '🐱' },
+    { en: 'strong', es: 'fuerte', emoji: '💪' },
+    { en: 'happy', es: 'feliz', emoji: '😊' },
+    { en: 'funny', es: 'chistoso', emoji: '😆' },
+    { en: 'beautiful', es: 'hermosa', emoji: '👧' },
+    { en: 'she', es: 'ella', emoji: '👩' },
+    { en: 'he', es: 'él', emoji: '👨' },
+    { en: 'they', es: 'ellos', emoji: '👫' },
+  ],
+  sentences: [
+    { en: 'She is beautiful.', es: 'Ella es hermosa.', emoji: '👧' },
+    { en: 'She is happy.', es: 'Ella está feliz.', emoji: '😊' },
+    { en: 'He is strong.', es: 'Él es fuerte.', emoji: '💪' },
+    { en: 'He is funny.', es: 'Él es chistoso.', emoji: '😆' },
+    { en: 'They are young.', es: 'Ellos son jóvenes.', emoji: '👫' },
+    { en: 'They are cute.', es: 'Ellos son tiernos.', emoji: '🐱' },
+    { en: 'Is she happy?', es: '¿Ella está feliz?', emoji: '❓' },
+    { en: 'Is he strong?', es: '¿Él es fuerte?', emoji: '❓' },
+    { en: 'Are they funny?', es: '¿Ellos son chistosos?', emoji: '❓' },
+    { en: 'Yes, she is.', es: 'Sí, ella lo está.', emoji: '✅' },
+    { en: "No, he isn't.", es: 'No, él no lo es.', emoji: '❌' },
+    { en: 'Yes, they are.', es: 'Sí, ellos lo son.', emoji: '✅' },
+  ],
+  questions: [
+    { prompt: 'She ___ happy.', emoji: '😊', options: ['is', 'are'], answer: 'is', tip: 'She + is' },
+    { prompt: 'They ___ young.', emoji: '👫', options: ['is', 'are'], answer: 'are', tip: 'They + are' },
+    { prompt: 'He ___ funny.', emoji: '😆', options: ['is', 'are'], answer: 'is', tip: 'He + is' },
+    { prompt: 'They ___ cute.', emoji: '🐱', options: ['is', 'are'], answer: 'are', tip: 'They + are' },
+    { prompt: '¿Cuál está bien? ✅', emoji: '👧', options: ['She is happy.', 'She are happy.'], answer: 'She is happy.' },
+    { prompt: 'Is she happy? 😊', emoji: '👧', options: ['Yes, she is.', 'Yes, she are.', 'Yes, he is.'], answer: 'Yes, she is.' },
+    { prompt: 'Is he strong? 💪', emoji: '👦', options: ['Yes, he is.', 'Yes, they are.', 'Yes, he are.'], answer: 'Yes, he is.' },
+    { prompt: 'Are they funny? 😐', emoji: '👫', options: ["No, they aren't.", "No, they isn't.", "No, she isn't."], answer: "No, they aren't." },
+    { prompt: 'Is she old? 👧', emoji: '👧', options: ["No, she isn't.", "No, she aren't.", 'Yes, she is.'], answer: "No, she isn't." },
+    { prompt: '___ he strong?', emoji: '💪', options: ['Is', 'Are'], answer: 'Is' },
+    { prompt: '___ they funny?', emoji: '😆', options: ['Is', 'Are'], answer: 'Are' },
+    { prompt: 'Lo contrario de "young" es…', emoji: '👴', options: ['old', 'big', 'cute'], answer: 'old' },
+  ],
+}
+
+export default friends

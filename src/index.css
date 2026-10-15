@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply font-body text-slate-800 antialiased;
+  background: #fef6e4;
+  background-image: radial-gradient(#fcd9b8 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  @apply font-display;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer components {
+  .card {
+    @apply rounded-3xl bg-white shadow-[0_6px_0_rgba(0,0,0,0.08)] ring-1 ring-black/5;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-display text-lg font-bold text-white shadow-[0_4px_0_rgba(0,0,0,0.18)] transition active:translate-y-[3px] active:shadow-none disabled:opacity-40 disabled:active:translate-y-0;
+  }
+  .chip {
+    @apply rounded-2xl border-2 border-b-4 px-4 py-2 font-display text-lg font-bold transition active:translate-y-[2px] active:border-b-2;
+  }
+}
