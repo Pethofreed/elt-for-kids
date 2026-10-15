@@ -95,6 +95,9 @@ function translateStep(topic: Topic, w: Word): ChoiceStep {
   }
 }
 
+/** Solo leemos en voz alta las preguntas que están en inglés. */
+export const isEnglishPrompt = (p: string) => !/[¿¡áéíóúñ]|Lo contrario|^\W/i.test(p)
+
 export function quizSteps(topic: Topic, n = 10): ChoiceStep[] {
   const qs: ChoiceStep[] = pick(topic.questions, n).map((q) => ({
     kind: 'choice',
@@ -103,8 +106,7 @@ export function quizSteps(topic: Topic, n = 10): ChoiceStep[] {
     options: shuffle(q.options),
     answer: q.answer,
     tip: q.tip,
-    // Solo leemos en voz alta las preguntas que están en inglés
-    speak: /[¿¡áéíóúñ]|Lo contrario|^\W/i.test(q.prompt) ? undefined : q.prompt,
+    speak: isEnglishPrompt(q.prompt) ? q.prompt : undefined,
   }))
   // Si faltan preguntas, completamos con traducciones
   const extra = pick(topic.words, Math.max(0, n - qs.length)).map((w) => translateStep(topic, w))
@@ -149,7 +151,7 @@ export function chatSteps(topic: Topic): ChoiceStep[] {
   }))
 }
 
-const NUMBERS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
+export const NUMBERS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
 
 export function clockSteps(n = 6): ChoiceStep[] {
   return pick(
@@ -177,7 +179,7 @@ export function clockSteps(n = 6): ChoiceStep[] {
 
 export type TownPlace = { word: Word; count: number }
 
-const COUNT_WORDS = ['zero', 'one', 'two', 'three']
+export const COUNT_WORDS = ['zero', 'one', 'two', 'three']
 
 export function plural(w: string) {
   const parts = w.split(' ')
@@ -189,7 +191,7 @@ export function plural(w: string) {
   return [...parts, p].join(' ')
 }
 
-const article = (w: string) => (/^[aeiou]/i.test(w) ? 'an' : 'a')
+export const article = (w: string) => (/^[aeiou]/i.test(w) ? 'an' : 'a')
 
 export const ANSWERS = {
   yesIs: 'Yes, there is.',

@@ -6,7 +6,8 @@ Los juegos (tarjetas, parejas, escuchar, escribir, armar frases y quiz) se gener
 
 ## Agregar palabras o frases a un tema que ya existe
 
-Abre el archivo del tema (por ejemplo `src/content/town.ts`) y agrega una línea:
+Abre el archivo del tema (por ejemplo `src/content/town.ts`) y agrega una línea
+(después corre `npm run audio`, ver paso 4 más abajo):
 
 ```ts
 words: [
@@ -37,7 +38,16 @@ import animals from './animals'
 export const topics: Topic[] = [hobbies, likes, descriptions, friends, town, routine, animals]
 ```
 
-4. Sube los cambios a GitHub y Vercel publica la nueva versión solo:
+4. Graba los audios de los textos nuevos (en tu Mac, voz "Samantha" en inglés):
+
+```bash
+npm run audio   # solo graba lo nuevo; tarda unos segundos por frase
+```
+
+   Si te saltas este paso, la app usa la voz del navegador para esos textos
+   (puede sonar en español en algunos dispositivos, como Brave).
+
+5. Sube los cambios a GitHub y Vercel publica la nueva versión solo:
 
 ```bash
 git add . && git commit -m "Nuevo tema: animals" && git push
