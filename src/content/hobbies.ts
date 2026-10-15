@@ -29,6 +29,13 @@ const hobbies: Topic = {
     { en: 'drawing', es: 'dibujar', emoji: '✏️' },
     { en: 'painting', es: 'pintar', emoji: '🎨' },
     { en: 'watching movies', es: 'ver películas', emoji: '🎬' },
+    // Invitaciones al club de Teacher Mafe y Teacher Daniel
+    { en: 'reading', es: 'leer', emoji: '📖' },
+    { en: 'sleeping', es: 'dormir', emoji: '😴' },
+    { en: 'playing the guitar', es: 'tocar la guitarra', emoji: '🎸' },
+    { en: 'going to the gym', es: 'ir al gimnasio', emoji: '🏋️' },
+    { en: 'watching series', es: 'ver series', emoji: '📺' },
+    { en: 'stargazing', es: 'mirar las estrellas', emoji: '🔭' },
   ],
   sentences: [
     { en: 'I love painting.', es: 'Me encanta pintar.', emoji: '🎨' },
@@ -42,6 +49,10 @@ const hobbies: Topic = {
     { en: 'I love watching movies.', es: 'Me encanta ver películas.', emoji: '🎬' },
     { en: 'I like playing sports.', es: 'Me gusta hacer deporte.', emoji: '⚽' },
     { en: 'What do you like to do?', es: '¿Qué te gusta hacer?', emoji: '❓' },
+    { en: 'I love playing the guitar.', es: 'Me encanta tocar la guitarra.', emoji: '🎸' },
+    { en: 'I like reading.', es: 'Me gusta leer.', emoji: '📖' },
+    { en: 'I love sleeping.', es: 'Me encanta dormir.', emoji: '😴' },
+    { en: 'I like going to the gym.', es: 'Me gusta ir al gimnasio.', emoji: '🏋️' },
   ],
   questions: [
     { prompt: 'I like ___ .', emoji: '🏊', options: ['swim', 'swimming', 'swims'], answer: 'swimming', tip: 'Después de like / love el verbo lleva -ING.' },
@@ -56,6 +67,9 @@ const hobbies: Topic = {
     { prompt: 'I love ___ .', emoji: '✏️', options: ['drawing', 'running', 'singing'], answer: 'drawing' },
     { prompt: '¿Cómo se dice "me encanta"?', emoji: '❤️', options: ['I love', 'I like', "I don't like"], answer: 'I love' },
     { prompt: 'I like ___ .', emoji: '🏃', options: ['running', 'swimming', 'eating'], answer: 'running' },
+    { prompt: 'Teacher Daniel: I love playing the ___ .', emoji: '🎸', options: ['guitar', 'sports', 'movies'], answer: 'guitar' },
+    { prompt: 'Teacher Mafe: I love ___ .', emoji: '😴', options: ['sleeping', 'sleep', 'sleeps'], answer: 'sleeping', tip: 'Después de love el verbo lleva -ING.' },
+    { prompt: 'I like ___ to the gym.', emoji: '🏋️', options: ['going', 'go', 'goes'], answer: 'going' },
   ],
 }
 

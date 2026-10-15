@@ -1,6 +1,6 @@
 import type { Topic } from '../content/types'
 import { ACTIVITIES, type ActivityId } from '../lib/activities'
-import { buildSteps, clockSteps, listenSteps, quizSteps, townSteps, whoIsItSteps, writeSteps, type Step } from '../lib/steps'
+import { buildSteps, chatSteps, clockSteps, listenSteps, quizSteps, townSteps, whoIsItSteps, writeSteps, type Step } from '../lib/steps'
 import Flashcards from './Flashcards'
 import MatchGame from './MatchGame'
 import StepRunner from './StepRunner'
@@ -14,6 +14,7 @@ const generators: Partial<Record<ActivityId, (t: Topic) => Step[]>> = {
   townMap: (t) => townSteps(t),
   whoIsIt: (t) => whoIsItSteps(t),
   clock: () => clockSteps(),
+  chat: (t) => chatSteps(t),
 }
 
 export default function ActivityPage({ topic, activity }: { topic: Topic; activity: ActivityId }) {

@@ -20,6 +20,8 @@ export type ChoiceStep = {
   town?: TownPlace[]
   /** Reloj grande (rutina). */
   clock?: number
+  /** Se muestra como globo de diálogo de la profe. */
+  chat?: boolean
 }
 
 export type WriteStep = {
@@ -133,6 +135,20 @@ export function whoIsItSteps(topic: Topic, n = 6): ChoiceStep[] {
   })
 }
 
+/** Chat con la profe: la conversación va en orden, las opciones se barajan. */
+export function chatSteps(topic: Topic): ChoiceStep[] {
+  return (topic.dialogue ?? []).map((q) => ({
+    kind: 'choice',
+    prompt: q.prompt,
+    options: shuffle(q.options),
+    answer: q.answer,
+    tip: q.tip,
+    speak: q.prompt,
+    listen: false,
+    chat: true,
+  }))
+}
+
 const NUMBERS = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
 
 export function clockSteps(n = 6): ChoiceStep[] {
@@ -235,9 +251,9 @@ export function examSteps(topics: Topic[]): Step[] {
   const main = topics.filter((t) => !t.extra)
   const steps: Step[] = []
   for (const t of main) {
-    steps.push(...quizSteps(t, 2))
-    steps.push(...writeSteps(t, 1))
-    steps.push(...buildSteps(t, 1))
+    steps.push(...quizSteps(t, 1))
+    steps.push(...(Math.random() < 0.5 ? writeSteps(t, 1) : buildSteps(t, 1)))
+    if (t.section !== 'vocab') steps.push(...quizSteps(t, 1))
     if (t.special?.includes('townMap')) steps.push(...townSteps(t, 2))
     if (t.special?.includes('whoIsIt')) steps.push(...whoIsItSteps(t, 1))
   }

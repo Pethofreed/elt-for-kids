@@ -52,3 +52,12 @@ npm run dev     # abre http://localhost:5173
 
 Colores disponibles: `violet`, `pink`, `orange`, `sky`, `emerald`, `amber`, `rose`, `indigo`.
 Emojis: en Mac usa `Ctrl + Cmd + Espacio` para elegirlos.
+
+## Opciones extra de un tema
+
+- `section: 'vocab'` → el tema aparece en la sección **🧩 Vocabulario** del menú
+  (sin esto aparece en **💬 Frases y temas**).
+- `dialogue: [...]` + `special: ['chat']` → activa el juego **💬 Chat**: la profe pregunta
+  y Matt elige la respuesta, en el orden escrito. Mismo formato que `questions`.
+  Ver ejemplo en `src/content/greetings.ts`.
+- `extra: true` → marca el tema como EXTRA y no entra en el Final Exam.

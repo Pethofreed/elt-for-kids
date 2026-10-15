@@ -21,7 +21,7 @@ export default function ChoiceView({ step, onAnswer, locked }: Props) {
   const [chosen, setChosen] = useState<string | null>(null)
 
   useEffect(() => {
-    if (step.listen && step.speak) {
+    if ((step.listen || step.chat) && step.speak) {
       const t = setTimeout(() => speak(step.speak!), 300)
       return () => clearTimeout(t)
     }
@@ -45,7 +45,15 @@ export default function ChoiceView({ step, onAnswer, locked }: Props) {
       {step.town && <TownView town={step.town} />}
       {step.clock && <ClockFace hour={step.clock} />}
 
-      {step.listen ? (
+      {step.chat ? (
+        <div className="flex items-end gap-3">
+          <span className="text-6xl">👩‍🏫</span>
+          <div className="relative flex flex-1 items-center gap-3 rounded-3xl rounded-bl-md bg-white p-5 shadow-[0_6px_0_rgba(0,0,0,0.08)] ring-1 ring-black/5">
+            <p className="flex-1 font-display text-2xl font-extrabold text-slate-800 sm:text-3xl">{step.prompt}</p>
+            {step.speak && <SpeakButton text={step.speak} />}
+          </div>
+        </div>
+      ) : step.listen ? (
         <div className="card flex flex-col items-center gap-2 p-6">
           <button
             onClick={() => speak(step.speak!)}

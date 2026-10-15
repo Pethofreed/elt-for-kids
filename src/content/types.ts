@@ -54,7 +54,7 @@ export type Character = {
 export type ThemeColor = 'violet' | 'pink' | 'orange' | 'sky' | 'emerald' | 'amber' | 'rose' | 'indigo'
 
 /** Actividades especiales que solo tienen algunos temas. */
-export type SpecialActivity = 'townMap' | 'whoIsIt' | 'clock'
+export type SpecialActivity = 'townMap' | 'whoIsIt' | 'clock' | 'chat'
 
 export type Topic = {
   id: string // sin espacios: "my-town"
@@ -67,7 +67,11 @@ export type Topic = {
   sentences: Sentence[]
   questions: Question[]
   characters?: Character[]
+  /** Conversación en orden para la actividad "chat" (la profe pregunta, Matt elige). */
+  dialogue?: Question[]
   special?: SpecialActivity[]
+  /** Sección del menú: 'talk' (frases, por defecto) o 'vocab' (vocabulario). */
+  section?: 'talk' | 'vocab'
   /** Marca de "tema extra" (no viene en el material del examen). */
   extra?: boolean
 }
