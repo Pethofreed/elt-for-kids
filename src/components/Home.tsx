@@ -42,9 +42,9 @@ export default function Home() {
         <div className="flex items-center gap-2">
           <span className="animate-float text-4xl">🚀</span>
           <h1 className="text-2xl font-extrabold leading-none text-violet-700 sm:text-3xl">
-            Matt's English
+            ELT
             <br />
-            Adventure
+            for Kids
           </h1>
         </div>
         <div className="rounded-full bg-white px-4 py-1.5 font-display text-xl font-extrabold text-amber-500 shadow ring-1 ring-black/5">⭐ {totalStars(progress)}</div>
