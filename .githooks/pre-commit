@@ -1,0 +1,13 @@
+#!/bin/sh
+# Si el commit cambia contenido, graba los audios que falten (y borra los que sobran)
+# y los incluye en el mismo commit. Requiere macOS (comando `say`).
+
+if git diff --cached --name-only | grep -qE '^src/content/|^src/lib/(steps|speakables)\.ts$'; then
+  if command -v say >/dev/null 2>&1; then
+    echo "🔊 Cambió el contenido: actualizando audios..."
+    npm run --silent audio || exit 1
+    git add -A public/audio src/lib/audioManifest.ts
+  else
+    echo "⚠️  No se grabaron audios (necesita macOS). Corre 'npm run audio' en tu Mac antes de subir."
+  fi
+fi

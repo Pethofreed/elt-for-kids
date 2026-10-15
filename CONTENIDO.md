@@ -38,13 +38,16 @@ import animals from './animals'
 export const topics: Topic[] = [hobbies, likes, descriptions, friends, town, routine, animals]
 ```
 
-4. Graba los audios de los textos nuevos (en tu Mac, voz "Samantha" en inglés):
+4. Audios: **se graban solos al hacer commit** (en tu Mac, voz "Samantha" en inglés).
+   Si el commit cambia algo en `src/content/`, el hook `.githooks/pre-commit` corre
+   `npm run audio`, graba lo nuevo, borra lo que sobra y lo incluye en el commit.
+   También puedes correrlo a mano cuando quieras:
 
 ```bash
 npm run audio   # solo graba lo nuevo; tarda unos segundos por frase
 ```
 
-   Si te saltas este paso, la app usa la voz del navegador para esos textos
+   Sin audio grabado, la app usa la voz del navegador para esos textos
    (puede sonar en español en algunos dispositivos, como Brave).
 
 5. Sube los cambios a GitHub y Vercel publica la nueva versión solo:
