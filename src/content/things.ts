@@ -45,12 +45,12 @@ const things: Topic = {
     { prompt: 'There is a ___ .', emoji: '📦', options: ['box', 'table', 'house'], answer: 'box' },
     { prompt: 'There is a ___ .', emoji: '🪆', options: ['doll', 'robot', 'bank'], answer: 'doll' },
     { prompt: 'There is a ___ .', emoji: '🏠', options: ['house', 'school', 'church'], answer: 'house' },
-    { prompt: 'We eat at the…', emoji: '🍽️', options: ['table', 'box', 'bank'], answer: 'table' },
-    { prompt: 'Where do you buy bread? 🍞', emoji: '🥖', options: ['bakery', 'library', 'cinema'], answer: 'bakery' },
-    { prompt: 'Where do you read books? 📖', emoji: '📚', options: ['library', 'park', 'bank'], answer: 'library' },
-    { prompt: 'Where do you take the bus?', emoji: '🚌', options: ['bus station', 'school', 'café'], answer: 'bus station' },
-    { prompt: 'Where do you drink coffee? ☕', emoji: '☕', options: ['café', 'church', 'park'], answer: 'café' },
-    { prompt: 'Where do you play outside? 🌳', emoji: '🌳', options: ['park', 'bank', 'box'], answer: 'park' },
+    { prompt: '¿En qué comemos?', emoji: '🍽️', options: ['table', 'box', 'bank'], answer: 'table' },
+    { prompt: '¿Dónde compras el pan? 🍞', emoji: '🥖', options: ['bakery', 'library', 'cinema'], answer: 'bakery' },
+    { prompt: '¿Dónde lees libros? 📖', emoji: '📚', options: ['library', 'park', 'bank'], answer: 'library' },
+    { prompt: '¿Dónde tomas el bus?', emoji: '🚌', options: ['bus station', 'school', 'café'], answer: 'bus station' },
+    { prompt: '¿Dónde tomas café? ☕', emoji: '☕', options: ['café', 'church', 'park'], answer: 'café' },
+    { prompt: '¿Dónde juegas al aire libre? 🌳', emoji: '🌳', options: ['park', 'bank', 'box'], answer: 'park' },
   ],
 }
 

@@ -65,11 +65,11 @@ const town: Topic = {
     { prompt: '___ there any supermarkets?', emoji: '🛒', options: ['Is', 'Are'], answer: 'Are' },
     { prompt: 'Is there a hospital? 👍', emoji: '🏥', options: ['Yes, there is.', 'Yes, there are.'], answer: 'Yes, there is.' },
     { prompt: 'Are there two parks? 👎', emoji: '🌳', options: ["No, there aren't.", "No, there isn't."], answer: "No, there aren't." },
-    { prompt: 'Where do you buy bread? 🍞', emoji: '🥖', options: ['bakery', 'bank', 'library'], answer: 'bakery' },
-    { prompt: 'Where do you watch movies? 🍿', emoji: '🎬', options: ['cinema', 'church', 'museum'], answer: 'cinema' },
-    { prompt: 'Where do you read books? 📖', emoji: '📚', options: ['library', 'hospital', 'café'], answer: 'library' },
-    { prompt: 'Where do you send a letter? 💌', emoji: '✉️', options: ['post office', 'police station', 'park'], answer: 'post office' },
-    { prompt: 'Fire! 🔥 Call the…', emoji: '🚒', options: ['fire station', 'bus station', 'bakery'], answer: 'fire station' },
+    { prompt: '¿Dónde compras el pan? 🍞', emoji: '🥖', options: ['bakery', 'bank', 'library'], answer: 'bakery' },
+    { prompt: '¿Dónde ves películas? 🍿', emoji: '🎬', options: ['cinema', 'church', 'museum'], answer: 'cinema' },
+    { prompt: '¿Dónde lees libros? 📖', emoji: '📚', options: ['library', 'hospital', 'café'], answer: 'library' },
+    { prompt: '¿Dónde envías una carta? 💌', emoji: '✉️', options: ['post office', 'police station', 'park'], answer: 'post office' },
+    { prompt: '¡Hay un incendio! 🔥 ¿A quién llamas?', emoji: '🚒', options: ['fire station', 'bus station', 'bakery'], answer: 'fire station' },
   ],
 }
 
