@@ -4,7 +4,6 @@ import type { Topic } from '../content/types'
 import { activitiesFor } from '../lib/activities'
 import { loadProgress, resetProgress, starsFor, totalStars, type Progress } from '../lib/progress'
 import { themes } from '../lib/theme'
-import Logo from './Logo'
 import { Page } from './ui'
 
 function TopicCard({ t, progress }: { t: Topic; progress: Progress }) {
@@ -40,7 +39,7 @@ export default function Home() {
   return (
     <Page>
       <header className="mb-4 flex items-center justify-between gap-3">
-        <Logo />
+        <h1 className="text-2xl font-extrabold text-violet-700 sm:text-3xl">Hello, Matt! 👋</h1>
         <div className="rounded-full bg-white px-4 py-1.5 font-display text-xl font-extrabold text-amber-500 shadow ring-1 ring-black/5">⭐ {totalStars(progress)}</div>
       </header>
 

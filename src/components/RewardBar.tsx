@@ -3,6 +3,7 @@ import { barColor, GOAL_OPTIONS, isFull, POINTS_PER_CORRECT, resetBar, setGoal, 
 import { celebrate, sfx } from '../lib/sounds'
 import { QuickPicker } from './QuickPlay'
 import { Modal } from './ui'
+import Logo from './Logo'
 
 /** Barra de recompensa fija arriba en todas las pantallas. */
 export default function RewardBar() {
@@ -38,15 +39,21 @@ export default function RewardBar() {
   return (
     <>
       <div className="sticky top-0 z-30 border-b border-black/5 bg-[#fef6e4]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-2">
+        <div className="flex items-center gap-2 px-3 py-2 sm:gap-4 sm:px-4">
+          {/* Logo arriba a la izquierda: lleva al inicio */}
+          <a href="#/" className="shrink-0 transition hover:scale-105" aria-label="Inicio">
+            <Logo size="sm" />
+          </a>
+          <div className="mx-auto flex min-w-0 max-w-3xl flex-1 items-center gap-2 sm:gap-3">
           <button
             onClick={() => setPicker(true)}
-            className={`flex shrink-0 items-center gap-1 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 py-1.5 pl-2 pr-3 font-display text-sm font-extrabold leading-tight text-white shadow-[0_3px_0_rgba(0,0,0,0.18)] transition hover:brightness-110 active:translate-y-[2px] active:shadow-none ${bump ? 'scale-110' : ''}`}
+            aria-label="Gana puntos"
+            className={`flex shrink-0 items-center gap-1 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 py-1.5 pl-2 pr-2 font-display text-sm sm:pr-3 font-extrabold leading-tight text-white shadow-[0_3px_0_rgba(0,0,0,0.18)] transition hover:brightness-110 active:translate-y-[2px] active:shadow-none ${bump ? 'scale-110' : ''}`}
           >
             <span className={`text-2xl ${full ? 'animate-float' : ''}`} aria-hidden>
               🎮
             </span>
-            <span className="text-left">
+            <span className="hidden text-left sm:block">
               Gana
               <br />
               puntos
@@ -58,7 +65,10 @@ export default function RewardBar() {
             aria-label={`Barra de premio: ${r.points} de ${r.goal} puntos`}
           >
             <div className="flex items-baseline justify-between font-display text-sm font-extrabold leading-none text-slate-600">
-              <span>{full ? '¡Premio listo! 🎉' : 'Game time'}</span>
+              <span>
+                {full ? '🎉' : ''}
+                <span className="hidden sm:inline">{full ? ' ¡Premio listo!' : 'Game time'}</span>
+              </span>
               <span className={full ? 'text-green-600' : ''}>
                 {r.points} / {r.goal}
               </span>
@@ -79,6 +89,11 @@ export default function RewardBar() {
           >
             ⚙️
           </button>
+          </div>
+          {/* Espacio del mismo ancho que el logo para que la barra quede centrada en pantallas grandes */}
+          <span className="invisible hidden shrink-0 xl:block" aria-hidden>
+            <Logo size="sm" />
+          </span>
         </div>
       </div>
 
