@@ -6,6 +6,7 @@ import { celebrate, sfx } from '../lib/sounds'
 export default function RewardBar() {
   const r = useRewards()
   const [config, setConfig] = useState(false)
+  const [gate, setGate] = useState(false)
   const [won, setWon] = useState(false)
   const [bump, setBump] = useState(false)
   const prev = useRef(r.points)
@@ -39,7 +40,7 @@ export default function RewardBar() {
             🎮
           </span>
           <button
-            onClick={() => (full ? setWon(true) : setConfig(true))}
+            onClick={() => (full ? setWon(true) : setGate(true))}
             className="min-w-0 flex-1 text-left"
             aria-label={`Barra de premio: ${r.points} de ${r.goal} puntos`}
           >
@@ -59,7 +60,7 @@ export default function RewardBar() {
             </div>
           </button>
           <button
-            onClick={() => setConfig(true)}
+            onClick={() => setGate(true)}
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-xl shadow ring-1 ring-black/5 transition hover:rotate-45"
             aria-label="Configurar barra"
           >
@@ -68,6 +69,15 @@ export default function RewardBar() {
         </div>
       </div>
 
+      {gate && (
+        <ParentGate
+          onClose={() => setGate(false)}
+          onPass={() => {
+            setGate(false)
+            setConfig(true)
+          }}
+        />
+      )}
       {config && <ConfigModal onClose={() => setConfig(false)} />}
       {won && <WonModal onClose={() => setWon(false)} />}
     </>
@@ -86,6 +96,66 @@ function Modal({ children, onClose }: { children: ReactNode; onClose: () => void
         {children}
       </div>
     </div>
+  )
+}
+
+// Multiplicación de las tablas 6–9: fácil para papá, difícil de adivinar para Matt.
+const newQuestion = () => {
+  const r = () => 6 + Math.floor(Math.random() * 4)
+  return [r(), r()] as const
+}
+
+/** "Solo papá": hay que resolver una multiplicación para abrir la configuración. */
+function ParentGate({ onClose, onPass }: { onClose: () => void; onPass: () => void }) {
+  const [[a, b], setQ] = useState(newQuestion)
+  const [value, setValue] = useState('')
+  const [wrong, setWrong] = useState(false)
+
+  const check = () => {
+    if (Number(value) === a * b) return onPass()
+    setWrong(true)
+    setValue('')
+    setQ(newQuestion())
+    setTimeout(() => setWrong(false), 500)
+  }
+
+  return (
+    <Modal onClose={onClose}>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-extrabold text-violet-700">🔒 Solo papá</h2>
+        <button onClick={onClose} className="text-2xl text-slate-400 hover:text-slate-600" aria-label="Cerrar">
+          ✕
+        </button>
+      </div>
+      <p className="mt-1 text-sm font-bold text-slate-500">Resuelve la multiplicación para cambiar la barra.</p>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          check()
+        }}
+        className={`mt-4 flex items-center justify-center gap-3 ${wrong ? 'animate-shake' : ''}`}
+      >
+        <span className="font-display text-4xl font-extrabold text-slate-700">
+          {a} × {b} =
+        </span>
+        <input
+          autoFocus
+          inputMode="numeric"
+          pattern="[0-9]*"
+          maxLength={3}
+          value={value}
+          onChange={(e) => setValue(e.target.value.replace(/\D/g, ''))}
+          aria-label={`Resultado de ${a} por ${b}`}
+          className={`w-24 rounded-2xl border-4 bg-white px-3 py-2 text-center font-display text-3xl font-bold outline-none transition ${
+            wrong ? 'border-rose-400' : 'border-violet-200 focus:border-violet-400'
+          }`}
+        />
+      </form>
+      {wrong && <p className="mt-2 text-center text-sm font-bold text-rose-500">Incorrecto, prueba con esta otra 🙂</p>}
+      <button onClick={check} disabled={!value} className="btn mt-4 w-full bg-violet-500 hover:bg-violet-600">
+        Entrar ✔
+      </button>
+    </Modal>
   )
 }
 
