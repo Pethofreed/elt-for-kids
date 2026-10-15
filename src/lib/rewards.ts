@@ -12,9 +12,11 @@ export type Rewards = {
   goal: number
   /** Cuántas barras ha llenado en total. */
   earned: number
+  /** Nombre del niño (para el saludo del inicio). */
+  name: string
 }
 
-const DEFAULT: Rewards = { points: 0, goal: 100, earned: 0 }
+const DEFAULT: Rewards = { points: 0, goal: 100, earned: 0, name: '' }
 
 function read(): Rewards {
   try {
@@ -54,6 +56,10 @@ export function setGoal(goal: number) {
   const wasFull = isFull(state)
   const nowFull = state.points >= goal
   write({ ...state, goal, points: Math.min(state.points, goal), earned: state.earned + (!wasFull && nowFull ? 1 : 0) })
+}
+
+export function setName(name: string) {
+  write({ ...state, name: name.slice(0, 20) })
 }
 
 /** Vacía la barra para empezar a ganar el siguiente premio. */

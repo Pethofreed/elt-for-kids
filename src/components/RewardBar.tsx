@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { barColor, GOAL_OPTIONS, isFull, POINTS_PER_CORRECT, resetBar, setGoal, useRewards } from '../lib/rewards'
+import { barColor, GOAL_OPTIONS, isFull, POINTS_PER_CORRECT, resetBar, setGoal, setName, useRewards } from '../lib/rewards'
 import { celebrate, sfx } from '../lib/sounds'
 import { QuickPicker } from './QuickPlay'
 import { Modal } from './ui'
@@ -183,7 +183,19 @@ function ConfigModal({ onClose }: { onClose: () => void }) {
           ✕
         </button>
       </div>
-      <p className="mt-1 text-sm font-bold text-slate-500">
+      <label className="mt-3 block">
+        <span className="text-sm font-bold text-slate-500">Nombre del niño</span>
+        <input
+          value={r.name}
+          onChange={(e) => setName(e.target.value)}
+          maxLength={20}
+          placeholder="Ej: Matt"
+          autoComplete="off"
+          className="mt-1 w-full rounded-xl border-2 border-violet-200 bg-white px-3 py-2 font-display text-lg font-bold text-slate-700 outline-none transition focus:border-violet-400"
+        />
+      </label>
+
+      <p className="mt-4 text-sm font-bold text-slate-500">
         Cada respuesta correcta suma <b className="text-violet-600">+{POINTS_PER_CORRECT}</b> puntos. ¿Cuántos puntos para ganar el premio?
       </p>
 

@@ -4,6 +4,7 @@ import type { Topic } from '../content/types'
 import { activitiesFor } from '../lib/activities'
 import { loadProgress, resetProgress, starsFor, totalStars, type Progress } from '../lib/progress'
 import { themes } from '../lib/theme'
+import { useRewards } from '../lib/rewards'
 import { Page } from './ui'
 
 function TopicCard({ t, progress }: { t: Topic; progress: Progress }) {
@@ -32,6 +33,7 @@ function TopicCard({ t, progress }: { t: Topic; progress: Progress }) {
 
 export default function Home() {
   const [progress, setProgress] = useState(loadProgress)
+  const { name } = useRewards()
   const talk = topics.filter((t) => t.section !== 'vocab')
   const vocab = topics.filter((t) => t.section === 'vocab')
   const examStars = starsFor(progress, 'exam', 'exam')
@@ -39,8 +41,8 @@ export default function Home() {
   return (
     <Page>
       <header className="mb-4 flex items-center justify-between gap-3">
-        <h1 className="text-2xl font-extrabold text-violet-700 sm:text-3xl">Hello, Matt! 👋</h1>
-        <div className="rounded-full bg-white px-4 py-1.5 font-display text-xl font-extrabold text-amber-500 shadow ring-1 ring-black/5">⭐ {totalStars(progress)}</div>
+        {name.trim() && <h1 className="min-w-0 truncate text-2xl font-extrabold text-violet-700 sm:text-3xl">Hello, {name.trim()}! 👋</h1>}
+        <div className="ml-auto rounded-full bg-white px-4 py-1.5 font-display text-xl font-extrabold text-amber-500 shadow ring-1 ring-black/5">⭐ {totalStars(progress)}</div>
       </header>
 
       <a
