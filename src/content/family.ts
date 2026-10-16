@@ -1,0 +1,73 @@
+import type { Topic } from './types'
+
+const family: Topic = {
+  id: 'family',
+  title: 'My Family',
+  subtitle: 'mother, father, brother…',
+  emoji: '👨‍👩‍👧‍👦',
+  color: 'sky',
+  section: 'vocab',
+  grammar: [
+    {
+      title: 'He is my… / She is my…',
+      lines: ['He = él (hombre) 👨', 'She = ella (mujer) 👩', 'He is my father. = Él es mi papá.', 'She is my sister. = Ella es mi hermana.'],
+      good: 'She is my mother.',
+      bad: 'He is my mother.',
+    },
+    {
+      title: '¡Ojo! Cousin',
+      lines: ['cousin = primo Y prima', 'En inglés es la misma palabra para los dos.'],
+      good: 'He is my cousin. / She is my cousin.',
+    },
+    {
+      title: 'Boy / Girl',
+      lines: ['boy = niño 👦', 'girl = niña 👧'],
+    },
+  ],
+  words: [
+    { en: 'grandfather', es: 'abuelo', emoji: '👴', alt: ['grandpa'] },
+    { en: 'grandmother', es: 'abuela', emoji: '👵', alt: ['grandma'] },
+    { en: 'father', es: 'papá', emoji: '👨', alt: ['dad'] },
+    { en: 'mother', es: 'mamá', emoji: '👩', alt: ['mom', 'mum'] },
+    { en: 'son', es: 'hijo', emoji: '👨‍👦' },
+    { en: 'daughter', es: 'hija', emoji: '👩‍👧' },
+    { en: 'boy', es: 'niño', emoji: '👦' },
+    { en: 'girl', es: 'niña', emoji: '👧' },
+    { en: 'cousin', es: 'primo / prima', emoji: '🧒' },
+    { en: 'uncle', es: 'tío', emoji: '🧔' },
+    { en: 'aunt', es: 'tía', emoji: '👩‍🦰' },
+    { en: 'brother', es: 'hermano', emoji: '🙋‍♂️' },
+    { en: 'sister', es: 'hermana', emoji: '🙋‍♀️' },
+  ],
+  sentences: [
+    { en: 'He is my father.', es: 'Él es mi papá.', emoji: '👨' },
+    { en: 'She is my mother.', es: 'Ella es mi mamá.', emoji: '👩' },
+    { en: 'He is my grandfather.', es: 'Él es mi abuelo.', emoji: '👴' },
+    { en: 'She is my grandmother.', es: 'Ella es mi abuela.', emoji: '👵' },
+    { en: 'He is my brother.', es: 'Él es mi hermano.', emoji: '🙋‍♂️' },
+    { en: 'She is my sister.', es: 'Ella es mi hermana.', emoji: '🙋‍♀️' },
+    { en: 'He is my uncle.', es: 'Él es mi tío.', emoji: '🧔' },
+    { en: 'She is my aunt.', es: 'Ella es mi tía.', emoji: '👩‍🦰' },
+    { en: 'He is my cousin.', es: 'Él es mi primo.', emoji: '🧒' },
+    { en: 'I am a boy.', es: 'Yo soy un niño.', emoji: '👦' },
+    { en: 'She is a girl.', es: 'Ella es una niña.', emoji: '👧' },
+  ],
+  questions: [
+    { prompt: 'La mamá de tu mamá es tu…', emoji: '👵', options: ['grandmother', 'aunt', 'sister'], answer: 'grandmother' },
+    { prompt: 'El papá de tu papá es tu…', emoji: '👴', options: ['grandfather', 'uncle', 'brother'], answer: 'grandfather' },
+    { prompt: 'El hermano de tu mamá es tu…', emoji: '🧔', options: ['uncle', 'cousin', 'father'], answer: 'uncle' },
+    { prompt: 'La hermana de tu papá es tu…', emoji: '👩‍🦰', options: ['aunt', 'mother', 'daughter'], answer: 'aunt' },
+    { prompt: 'El hijo de tu tío es tu…', emoji: '🧒', options: ['cousin', 'brother', 'son'], answer: 'cousin' },
+    { prompt: 'La hija de tu tía es tu…', emoji: '🧒', options: ['cousin', 'sister', 'aunt'], answer: 'cousin', tip: 'Cousin sirve para primo y para prima.' },
+    { prompt: '___ is my sister.', emoji: '🙋‍♀️', options: ['She', 'He'], answer: 'She', tip: 'Mujer = SHE. Hombre = HE.' },
+    { prompt: '___ is my uncle.', emoji: '🧔', options: ['He', 'She'], answer: 'He', tip: 'Mujer = SHE. Hombre = HE.' },
+    { prompt: 'He is my ___ .', emoji: '👨', options: ['father', 'mother', 'sister'], answer: 'father' },
+    { prompt: 'She is my ___ .', emoji: '👵', options: ['grandmother', 'grandfather', 'brother'], answer: 'grandmother' },
+    { prompt: '¿Cómo se dice "niña"?', emoji: '👧', options: ['girl', 'boy', 'daughter'], answer: 'girl' },
+    { prompt: '¿Cómo se dice "hijo"?', emoji: '👨‍👦', options: ['son', 'daughter', 'brother'], answer: 'son' },
+    { prompt: '¿Cómo se dice "hija"?', emoji: '👩‍👧', options: ['daughter', 'son', 'sister'], answer: 'daughter' },
+    { prompt: '¿Cuál está bien? ✅', emoji: '👩', options: ['She is my mother.', 'He is my mother.'], answer: 'She is my mother.' },
+  ],
+}
+
+export default family
